@@ -1,0 +1,11 @@
+- become: true
+  hosts: devmachine
+  gather_facts: true
+  tasks:
+    # - name: update apt cache
+    #   apt:
+    #     # update_cache: yes
+    #     cache_valid_time: 84400
+
+    - import_role:
+        name: docker-dev

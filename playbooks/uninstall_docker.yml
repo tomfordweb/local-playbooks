@@ -1,0 +1,15 @@
+---
+# This will uninstall docker from your system
+- become: true
+  hosts:
+    - devmachine
+  tasks:
+    - name: uninstall docker and dependancies
+      apt:
+        state: absent
+        pkg:
+          - docker
+          - docker-engine
+          - docker.io
+          - containerd
+          - runc

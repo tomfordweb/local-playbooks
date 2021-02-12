@@ -1,0 +1,33 @@
+---
+# Installs docker and all of its depedancies
+- name: Install docker dependancies
+  apt:
+    state: present
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+
+- name: Add docker official GPG key
+  become_user: root
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Print the current lsb
+  ansible.builtin.debug:
+    msg: "Current lsb is {{ ansible_facts.distribution_release }}"
+
+- name: Add the docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ ansible_facts.distribution_release }} stable
+
+- name: Update apt cache and install docker
+  apt:
+    update_cache: yes
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
