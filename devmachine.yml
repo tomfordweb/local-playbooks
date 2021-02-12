@@ -6,10 +6,7 @@
       apt:
         update_cache: yes
         cache_valid_time: 84400
-
-    # - import_role:
-    #   name: docker-dev
-
   roles:
     - role: vim-user
       become: no
+    - role: docker-dev
