@@ -1,4 +1,4 @@
-- become: true
+- become: yes
   hosts: devmachine
   gather_facts: true
   tasks:
@@ -7,5 +7,9 @@
         update_cache: yes
         cache_valid_time: 84400
 
-    - import_role:
-        name: docker-dev
+    # - import_role:
+    #   name: docker-dev
+
+  roles:
+    - role: vim-user
+      become: no

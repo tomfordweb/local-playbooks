@@ -1,2 +1,25 @@
 ---
 # defaults file for vim-config
+vim_directory: "{{ home_directory }}/.vim"
+vim_bundle_directory: "{{ vim_directory }}/bundle"
+vimrc: "{{ home_directory }}/.vimrc"
+
+# Note: you must have at least two plugins currently...
+vim_pathogen_plugins:
+  # the classic status bar at the bottom of vim
+  vim-airline:
+    url: https://github.com/vim-airline/vim-airline
+  nerdtree:
+    url: https://github.com/preservim/nerdtree
+  vim-gitgutter:
+    url: https://github.com/airblade/vim-gitgutter
+  vim-fugitive:
+    url: https://github.com/tpope/vim-fugitive
+  # Note: Any language specific development will most likey need linters installed
+  # see :help syntastic-checkers
+  syntastic:
+    url: https://github.com/vim-syntastic/syntastic
+  ctrlp.vim:
+    url: https://github.com/ctrlpvim/ctrlp.vim
+  vim-commentary:
+    url: https://github.com/tpope/vim-commentary

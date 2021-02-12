@@ -1,5 +1,4 @@
 ---
-# Installs docker and all of its depedancies
 - name: Install docker dependancies
   apt:
     state: present
@@ -16,9 +15,9 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-- name: Print the current lsb
+- name: "Linux Standard Base"
   ansible.builtin.debug:
-    msg: "Current lsb is {{ ansible_facts.distribution_release }}"
+    msg: "Current LSB is {{ ansible_facts.distribution_release }}"
 
 - name: Add the docker repository
   apt_repository:

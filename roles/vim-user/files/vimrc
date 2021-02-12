@@ -1,0 +1,45 @@
+execute pathogen#infect()
+
+syntax on
+filetype plugin indent on
+
+" Configuration for vim-airline
+set laststatus=2
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" Configuration for NERDTree
+map <F5> :NERDTreeToggle<CR>
+
+" Configuration for syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Configuration for ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+set ruler
+set showcmd
+set scrolloff=5
+set wildmenu
+set incsearch
+set number
+set hidden
+set ai
+set si
+set expandtab
+set shiftwidth=2
+set smartindent
+set tabstop=2
+set background=dark
