@@ -49,6 +49,7 @@
   with_items: "{{ active_bundle_plugins.stdout_lines }}"
 
 - name: Ensure .vimrc config in place
+  tags: ['vimrc']
   copy:
     src: vimrc
     dest: "{{ vimrc }}"

@@ -14,6 +14,7 @@ endif
 
 map <F3> :bp<CR>
 map <F4> :bn<CR>
+map <F10> :bn <Bar> bd #<CR>
 map <F5> :NERDTreeToggle<CR>
 
 " Configuration for syntastic
