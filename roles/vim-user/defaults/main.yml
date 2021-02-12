@@ -15,11 +15,14 @@ vim_pathogen_plugins:
     url: https://github.com/airblade/vim-gitgutter
   vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-  # Note: Any language specific development will most likey need linters installed
-  # see :help syntastic-checkers
   syntastic:
+    # Note: Any language specific development will most likey need linters installed
+    # see :help syntastic-checkers
     url: https://github.com/vim-syntastic/syntastic
   ctrlp.vim:
     url: https://github.com/ctrlpvim/ctrlp.vim
   vim-commentary:
     url: https://github.com/tpope/vim-commentary
+  # theme
+  sonokai:
+    url: https://github.com/sainnhe/sonokai
