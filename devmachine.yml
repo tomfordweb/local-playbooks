@@ -10,3 +10,5 @@
     - role: vim-user
       become: no
     - role: docker-dev
+    - role: bash-user
+      become: no
