@@ -37,6 +37,6 @@
         users:
           - "{{ username }}@{{ pve_node }}"
 
-  roles:
-    - role: remote-user
+  # roles:
+  #   - role: remote-user
 

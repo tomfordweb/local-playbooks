@@ -1,0 +1,5 @@
+---
+- become: false
+  ansible_user: "{{ username }}"
+  tasks:
+    - name: Create a gitlab runner
