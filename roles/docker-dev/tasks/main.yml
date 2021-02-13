@@ -25,7 +25,6 @@
 
 - name: Update apt cache and install docker
   apt:
-    update_cache: yes
     pkg:
       - docker-ce
       - docker-ce-cli
