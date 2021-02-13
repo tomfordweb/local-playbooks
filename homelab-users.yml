@@ -3,9 +3,8 @@
   become: false
   gather_facts: true
   hosts: pve
-
+  
   tasks:
-
     - name: "Load the pve vault"
       include_vars:
         file: vault/pve
@@ -38,5 +37,6 @@
         users:
           - "{{ username }}@{{ pve_node }}"
 
-
+  roles:
+    - role: remote-user
 

@@ -2,4 +2,4 @@
 revenge ansible_connection=local
 
 [pve]
-192.168.1.190
+home.lab
