@@ -24,7 +24,8 @@ alias dce="docker-compose exec"
 alias gittags="git for-each-ref --format=\"%(taggerdate): %(refname)\" --sort=-taggerdate --count=10 refs/tags"
 alias gs="git status"
 alias gc="git commit"
-
+alias undolastcommit="git reset --soft HEAD~1"
+alias removestaging="git reset HEAD -- ."
 
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 # We have color support; assume it's compliant with Ecma-48
