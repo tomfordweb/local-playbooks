@@ -1,29 +1,47 @@
 ---
 # tasks file for roles/debian
-- name: update apt cache
-  apt:
+- apt:
     update_cache: yes
     cache_valid_time: 84400
+  tags: ['packages']
 
-- name: install essential apt packages
+- name: Remove apt packages
+  apt:
+    pkg:
+      - nano
+    state: absent
+  tags: ['packages']
+
+- name: Install apt packages
   apt:
     pkg:
       - snapd
       - firefox
+      - chromium-browser
+      - filezilla
+      - nginx
+      - vim
+      - neofetch
+      - virtualbox
+      - net-tools
     state: present
+  tags: ['packages']
 
-- name: install essential contained snaps
+- name: Install snaps
   community.general.snap:
     name:
       - spotify
     state: present
+  tags: ['packages']
 
-- name: install essential snaps in classic mode
+- name: Install snaps in classic mode
   community.general.snap:
     state: present
     name:
       - code
+      - sublime-text
     classic: yes
+  tags: ['packages']
 
 - name: Install docker dependancies 
   apt:
@@ -34,16 +52,19 @@
       - curl
       - gnupg-agent
       - software-properties-common
+  tags: ['packages']
 
 - name: Add docker official GPG key
   become_user: root
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
+  tags: ['packages']
 
 - name: Add the docker repository
   apt_repository:
     repo: deb https://download.docker.com/linux/ubuntu {{ ansible_facts.distribution_release }} stable
+  tags: ['packages']
 
 - name: Update apt cache and install docker
   apt:
@@ -53,4 +74,5 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+  tags: ['packages']
 
