@@ -1,12 +1,25 @@
 ---
-- name: Install vim and denendancies for plugins
+- name: Install vim and denendancies for plugins for debian distros
   become: yes
+  when: ansible_facts['os_family'] == 'Debian'
   apt:
     pkg:
       - vim
       - git
       - fonts-powerline
     state: present
+
+- name: Install vim and denendancies for plugins for Arch
+  become: yes
+  when: ansible_facts['os_family'] == 'Archlinux'
+  community.general.pacman:
+    name:
+      - vim
+      - git
+      - powerline-fonts
+    state: present
+- debug:
+    msg: "{{ ansible_facts['os_family'] }}"
 
 - name: Ensure .vim/{autoload,bundle} directory exists
   file:
