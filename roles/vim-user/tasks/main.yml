@@ -9,15 +9,6 @@
       - fonts-powerline
     state: present
 
-- name: Install vim and denendancies for plugins for Arch
-  become: yes
-  when: ansible_facts['os_family'] == 'Archlinux'
-  community.general.pacman:
-    name:
-      - vim
-      - git
-      - powerline-fonts
-    state: present
 - debug:
     msg: "{{ ansible_facts['os_family'] }}"
 
@@ -41,9 +32,11 @@
 - name: Get a list of currently installed plugins on the machine
   shell: "ls -1 {{ vim_bundle_directory }}"
   register: active_bundle_plugins
-  # TODO: doesn't work...
-  changed_when: "active_bundle_plugins.stdout_lines != (vim_pathogen_plugins.keys() | list | reverse)"
+  changed_when: false
 
+- name: Determining whether or not plugin directory has been modifed.
+  set_fact:
+    vim_bundle_dir_modified: "{{ active_bundle_plugins.stdout_lines | sort  !=  vim_pathogen_plugins.keys() | list | sort  }}"
 - name: Add plugins for vim-pathogen
   git:
     dest: "{{ vim_bundle_directory }}/{{ item.key }}"
@@ -52,13 +45,13 @@
     update: yes
     recursive: no
   loop: "{{ lookup('dict', vim_pathogen_plugins) }}"
-  changed_when: "active_bundle_plugins.stdout_lines != (vim_pathogen_plugins.keys() | list | reverse)"
+  changed_when: vim_bundle_dir_modified
 
 - name: Remove any inactive plugins
   file:
     path: "{{ vim_bundle_directory }}/{{ item }}"
     state: absent
-  when: item not in vim_pathogen_plugins
+  when: item not in vim_pathogen_plugins.keys()
   with_items: "{{ active_bundle_plugins.stdout_lines }}"
 
 - name: Ensure .vimrc config in place

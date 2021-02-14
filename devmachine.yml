@@ -1,16 +1,17 @@
 - become: yes
   hosts: devmachine
   gather_facts: true
-  tasks:
-    - name: update apt cache
-      apt:
-        update_cache: yes
-        cache_valid_time: 84400
-      when: ansible_facts['os_family'] == 'Debian'
+
   roles:
-    # - role: vim-user
-    #   become: no
-    # - role: docker-dev
-    # - role: bash-user
-    #   become: no
-    - role: arch
+    - role: vim-user
+      become: no
+      tags: ['vim']
+
+    - role: bash-user
+      become: no
+
+    - role: debian-devmachine
+      when: ansible_facts['os_family'] == 'Debian'
+
+    - role: arch-devmachine
+      when: ansible_facts['os_family'] == 'Archlinux'
