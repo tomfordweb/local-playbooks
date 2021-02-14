@@ -8,8 +8,9 @@
         cache_valid_time: 84400
       when: ansible_facts['os_family'] == 'Debian'
   roles:
-    - role: vim-user
-      become: no
-    - role: docker-dev
-    - role: bash-user
-      become: no
+    # - role: vim-user
+    #   become: no
+    # - role: docker-dev
+    # - role: bash-user
+    #   become: no
+    - role: arch

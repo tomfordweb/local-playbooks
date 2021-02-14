@@ -1,0 +1,23 @@
+---
+# tasks file for roles/arch
+- name: Install packages
+  community.general.pacman:
+    name:
+      - i3-gaps
+- name: Copy i3 config
+  ansible.builtin.copy:
+    src: i3config
+    dest: "{{ home_directory }}/.i3/config"
+    mode: "0644"
+
+- name: Copy XModMap
+  ansible.builtin.copy:
+    src: Xmodmap
+    dest: "{{ home_directory }}/.Xmodmap"
+
+
+- name: Reload XModmap after loading config
+  command: "xmodmap {{ home_directory }}/.Xmodmap"
+
+
+    
