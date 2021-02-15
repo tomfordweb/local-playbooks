@@ -24,6 +24,7 @@
       - neofetch
       - virtualbox
       - net-tools
+      - docker-compose
     state: present
   tags: ['packages']
 
@@ -33,6 +34,8 @@
       - spotify
     state: present
   tags: ['packages']
+
+
 
 - name: Install snaps in classic mode
   community.general.snap:
