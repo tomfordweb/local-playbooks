@@ -18,3 +18,4 @@
 
     - role: arch-devmachine
       when: ansible_facts['os_family'] == 'Archlinux'
+    - role: i3
