@@ -6,6 +6,12 @@
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
+- name: install surge
+  community.general.npm:
+    name: surge
+    global: yes
+    state: present
+
 - name: install gatsby cli
   community.general.npm:
     name: gatsby-cli

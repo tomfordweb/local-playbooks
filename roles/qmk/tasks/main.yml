@@ -1,0 +1,13 @@
+---
+# tasks file for roles/qmk
+- name: install qmk cli
+  pip:
+    name: qmk
+    extra_args: --user
+
+- name: update exports
+  copy: 
+    src: qmk-configurator
+    dest: "{{ home_directory }}/qmk-configurator"
+
+
