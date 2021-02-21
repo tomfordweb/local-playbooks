@@ -1,10 +1,9 @@
 - become: yes
   hosts: devmachine
+  become_user: root
+  become_method: su
   gather_facts: true
   roles:
-    - role: js-dev
-      tags: ['code','js']
-      become: no
 
     - role: vim-user
       become: no

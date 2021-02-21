@@ -1,5 +1,10 @@
 ---
 # tasks file for roles/i3
+- name: Create the i3 directory
+  file:
+    path: "{{ home_directory }}/.config/regolith/i3"
+    state: directory
+
 - name: Copy i3 config
   ansible.builtin.copy:
     src: regolithConfig
