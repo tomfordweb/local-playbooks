@@ -24,6 +24,7 @@
       - neofetch
       - virtualbox
       - net-tools
+      - nmap
       - docker-compose
     state: present
   tags: ['packages']
@@ -34,7 +35,6 @@
       - spotify
     state: present
   tags: ['packages']
-
 
 
 - name: Install snaps in classic mode
@@ -78,4 +78,11 @@
       - docker-ce-cli
       - containerd.io
   tags: ['packages']
+
+- name: add the docker group
+  ansible.builtin.group:
+     name: docker
+     state: present
+- name: add the user to the group
+  command: "usermod -aG docker {{ username }}"
 
