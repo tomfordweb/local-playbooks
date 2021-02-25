@@ -9,18 +9,20 @@
       become: no
       tags: ['vim']
 
-    - role: bash-user
-      become: no
+    - role: devmachine
 
-    - role: kiibohd
-      when: ansible_facts['os_family'] == 'Debian'
+    # - role: bash-user
+    #   become: no
 
-    - role: debian-devmachine
-      when: ansible_facts['os_family'] == 'Debian'
+    # - role: kiibohd
+    #   when: ansible_facts['os_family'] == 'Debian'
 
-    - role: arch-devmachine
-      when: ansible_facts['os_family'] == 'Archlinux'
+    # - role: debian-devmachine
+    #   when: ansible_facts['os_family'] == 'Debian'
 
-    - role: i3
+    # - role: arch-devmachine
+    #   when: ansible_facts['os_family'] == 'Archlinux'
+
+    # - role: i3
     
-    - role: qmk
+    # - role: qmk
