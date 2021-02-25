@@ -11,3 +11,19 @@
     chdir: "{{ lookup('env', 'HOME') }}/yay"
     cmd: "makepkg -sfi --noconfirm"
     creates: /usr/bin/yay
+
+- name: Install pacman packages
+  community.general.pacman:
+    name: 
+      - xorg-xmodmap
+    state: present
+
+- name: Add xmodmap file to home
+  ansible.builtin.copy:
+    src: xmodmap
+    dest: "{{ lookup('env', 'HOME') }}/.xmodmap"
+
+- name: Update xmodmap configuration
+  shell: "xmodmap {{ lookup('env', 'HOME') }}/.xmodmap"
+  changed_when: false
+
