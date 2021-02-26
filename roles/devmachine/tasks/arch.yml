@@ -21,9 +21,9 @@
 - name: Add xmodmap file to home
   ansible.builtin.copy:
     src: xmodmap
-    dest: "{{ lookup('env', 'HOME') }}/.xmodmap"
+    dest: "{{ lookup('env', 'HOME') }}/.Xmodmap"
 
 - name: Update xmodmap configuration
-  shell: "xmodmap {{ lookup('env', 'HOME') }}/.xmodmap"
+  shell: "xmodmap {{ lookup('env', 'HOME') }}/.Xmodmap"
   changed_when: false
 
