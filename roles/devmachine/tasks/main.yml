@@ -1,8 +1,13 @@
 ---
 # tasks file for devmachine
 - import_tasks: arch.yml
-  tags: ['arch']
+  when:  ansible_distribution == 'Archlinux'
 
+- import_tasks: ubuntu.yml
+  when:  ansible_distribution == 'Ubuntu'
+
+- import_tasks: js.yml
+  become_user: tom
 
 - name: Load in custom  bash_aliases file
   ansible.builtin.copy:

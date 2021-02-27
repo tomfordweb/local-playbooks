@@ -1,5 +1,4 @@
 ---
-
 - name: Clone yay
   git:
     repo: https://aur.archlinux.org/yay-bin.git
@@ -27,3 +26,27 @@
   shell: "xmodmap {{ lookup('env', 'HOME') }}/.Xmodmap"
   changed_when: false
 
+- name: pacman packages
+  community.general.pacman:
+    name:
+      - code # vs code
+      - tlp # Power savings, systemd service
+      - acpi_call # For advanced TLP usage, required for neweer thinkpads, see TLP wiki
+      - ufw
+    state: present
+
+- name: enable tlp
+  ansible.builtin.systemd:
+    name: tlp.service
+    state: started
+    enabled: yes
+
+- name: enable ufw
+  community.general.ufw:
+    state: enabled
+
+- name: enable ufw systemd service
+  ansible.builtin.systemd:
+    name: ufw.service
+    state: started
+    enabled: yes
