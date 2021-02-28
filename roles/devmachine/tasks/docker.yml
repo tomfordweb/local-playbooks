@@ -1,0 +1,56 @@
+---
+- name: Install docker dependancies 
+  apt:
+    state: present
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+  tags: ['packages']
+  when:  ansible_distribution == 'Ubuntu'
+
+- name: Add docker official GPG key
+  become_user: root
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  tags: ['packages']
+  when:  ansible_distribution == 'Ubuntu'
+
+- name: Add the docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ ansible_facts.distribution_release }} stable
+  tags: ['packages']
+  when:  ansible_distribution == 'Ubuntu'
+
+- name: Update apt cache and install docker
+  apt:
+    update_cache: yes
+    state: present
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+  tags: ['packages']
+  when:  ansible_distribution == 'Ubuntu'
+
+- name: Install docker
+  community.general.pacman:
+    name: 
+      - docker
+      - docker-compose 
+    state: present
+  when:  ansible_distribution == 'Archlinux'
+
+- name: add the docker group
+  ansible.builtin.group:
+     name: docker
+     state: present
+
+- name: add the user to the docker group
+  ansible.builtin.user:
+    name: "{{ username }}"
+    append: yes
+    groups: docker

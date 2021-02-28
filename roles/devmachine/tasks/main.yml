@@ -9,6 +9,11 @@
 - import_tasks: js.yml
   become_user: tom
 
+- import_tasks: docker.yml
+
+- import_tasks: kubernetes.yml
+  become_user: tom
+
 - name: Load in custom  bash_aliases file
   ansible.builtin.copy:
     src: bash_aliases    

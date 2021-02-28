@@ -1,0 +1,8 @@
+---
+- name: install kubernetes control dependencies
+  aur:
+    name: 
+      - minikube
+      - kubectl
+    state: present
+
